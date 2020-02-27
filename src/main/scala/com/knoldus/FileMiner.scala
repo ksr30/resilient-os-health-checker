@@ -17,6 +17,12 @@ class FileMiner extends Actor{
       val totalLogFind:ActorDataStructure=tagFinder(listOfLines)
       futureWrapper(totalLogFind).pipeTo(context.sender())
   }
+
+  /**
+   * This function counts total numbers of errors, warnings and info of provided log file.
+   * @param listOfLines List of lines of provided log file .
+   * @return Total numbers of errors, warnings and info.
+   */
   def tagFinder(listOfLines: List[String]):ActorDataStructure={
     listOfLines match {
       case Nil=> ActorDataStructure(noOfErrors,noOfWarnings,noOfInfo)
